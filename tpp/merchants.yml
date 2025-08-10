@@ -1,7 +1,0 @@
-# List of public product sitemap URLs to scan (respect robots.txt)
-# Start with a few that expose product pages publicly.
-# Replace with actual merchant sitemaps you confirm are allowed to be fetched.
-sitemaps:
-  - https://<merchant-1>/sitemap-products.xml
-  - https://<merchant-2>/sitemap-products-1.xml
-category_pages: []
