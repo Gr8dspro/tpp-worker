@@ -1,14 +1,12 @@
 name: tpp-worker
-
 on:
   schedule:
-    - cron: "0 */12 * * *"   # refresh loop every 12h
-    - cron: "30 2 * * *"     # discovery loop daily (02:30 UTC)
+    - cron: "0 */12 * * *"
+    - cron: "30 2 * * *"
   workflow_dispatch:
     inputs:
       which:
         description: "Which job to run"
-        required: false
         default: "both"
         type: choice
         options: [discover, refresh, both]
@@ -35,6 +33,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r worker/requirements.txt
 
+      - name: Show repo tree (debug)
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 3 -type f | sort
+
       - name: Decide which scripts to run
         id: plan
         run: |
@@ -56,10 +60,3 @@ jobs:
           TPP_SECRET:   ${{ secrets.TPP_SECRET }}
         run: python worker/discover.py
 
-      - name: Save logs (artifact on failure)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: worker-logs
-          path: .
-          retention-days: 3
