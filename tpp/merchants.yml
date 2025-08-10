@@ -2,7 +2,6 @@
 # Start with a few that expose product pages publicly.
 # Replace with actual merchant sitemaps you confirm are allowed to be fetched.
 sitemaps:
-  - https://example.com/sitemap-products.xml
-  - https://example.org/sitemaps/products-1.xml
-# You can also list specific product category pages (will be parsed for links).
+  - https://<merchant-1>/sitemap-products.xml
+  - https://<merchant-2>/sitemap-products-1.xml
 category_pages: []
